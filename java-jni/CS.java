@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class CS {
-  public int csptr;
+  public long csptr;
 
   protected HDF globalHDF;
   protected HDF localHDF;
@@ -110,11 +110,11 @@ public class CS {
   }
 
 
-  private native int    _init(int ptr);
-  private native void   _dealloc(int ptr);
-  private native void   _parseFile(int ptr, String filename,
+  private native long    _init(long ptr);
+  private native void   _dealloc(long ptr);
+  private native void   _parseFile(long ptr, String filename,
                                    boolean use_cb);
-  private native void   _parseStr(int ptr, String content);
-  private native String _render(int ptr);
-  private native void   _setGlobalHdf(int csptr, int hdfptr);
+  private native void   _parseStr(long ptr, String content);
+  private native String _render(long ptr);
+  private native void   _setGlobalHdf(long csptr, long hdfptr);
 };

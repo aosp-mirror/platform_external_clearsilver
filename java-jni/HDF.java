@@ -11,7 +11,7 @@ import java.util.TimeZone;
  *  are not yet exposed through this wrapper.
  */
 public class HDF {
-  int hdfptr;  // stores the C HDF* pointer
+  long hdfptr;  // stores the C HDF* pointer
   HDF root;    // If this is a child HDF node, points at the root node of
                // the tree.  For root nodes this is null.  A child node needs
                // to hold a reference on the root to prevent the root from
@@ -29,7 +29,7 @@ public class HDF {
   /** Constructs an HDF child node.  Used by other methods in this class when
    * a child node needs to be constructed.
    */
-  private HDF(int hdfptr, HDF parent) {
+  private HDF(long hdfptr, HDF parent) {
     this.hdfptr = hdfptr;
     this.root = (parent.root != null) ? parent.root : parent;
   }
@@ -252,7 +252,7 @@ public class HDF {
     if (hdfptr == 0) {
       throw new NullPointerException("HDF is closed.");
     }
-    int obj_ptr = _getObj(hdfptr, hdfpath);
+    long obj_ptr = _getObj(hdfptr, hdfpath);
     if ( obj_ptr == 0 ) {
       return null;
     }
@@ -266,7 +266,7 @@ public class HDF {
     if (hdfptr == 0) {
       throw new NullPointerException("HDF is closed.");
     }
-    int obj_ptr = _getChild(hdfptr, hdfpath);
+    long obj_ptr = _getChild(hdfptr, hdfpath);
     if ( obj_ptr == 0 ) {
       return null;
     }
@@ -285,7 +285,7 @@ public class HDF {
     if (hdfptr == 0) {
       throw new NullPointerException("HDF is closed.");
     }
-    int obj_ptr = _getObj(hdfptr, hdfpath);
+    long obj_ptr = _getObj(hdfptr, hdfpath);
     if ( obj_ptr == 0 ) {
       // Create a node
       _setValue(hdfptr, hdfpath, "");
@@ -322,7 +322,7 @@ public class HDF {
     if (hdfptr == 0) {
       throw new NullPointerException("HDF is closed.");
     }
-    int child_ptr = _objChild(hdfptr);
+    long child_ptr = _objChild(hdfptr);
     if ( child_ptr == 0 ) {
       return null;
     }
@@ -336,7 +336,7 @@ public class HDF {
     if (hdfptr == 0) {
       throw new NullPointerException("HDF is closed.");
     }
-    int next_ptr = _objNext(hdfptr);
+    long next_ptr = _objNext(hdfptr);
     if ( next_ptr == 0 ) {
       return null;
     }
@@ -361,29 +361,29 @@ public class HDF {
     return _dump(hdfptr);
   }
 
-  private static native int _init();
-  private static native void _dealloc(int ptr);
-  private native boolean _readFile(int ptr, String filename, boolean use_cb);
-  private static native boolean _writeFile(int ptr, String filename);
-  private static native boolean _writeFileAtomic(int ptr, String filename);
-  private static native boolean _readString(int ptr, String data);
-  private static native String _writeString(int ptr);
-  private static native int _getIntValue(int ptr, String hdfname,
+  private static native long _init();
+  private static native void _dealloc(long ptr);
+  private native boolean _readFile(long ptr, String filename, boolean use_cb);
+  private static native boolean _writeFile(long ptr, String filename);
+  private static native boolean _writeFileAtomic(long ptr, String filename);
+  private static native boolean _readString(long ptr, String data);
+  private static native String _writeString(long ptr);
+  private static native int _getIntValue(long ptr, String hdfname,
                                          int default_value);
-  private static native String _getValue(int ptr, String hdfname,
+  private static native String _getValue(long ptr, String hdfname,
                                          String default_value);
-  private static native void _setValue(int ptr, String hdfname,
+  private static native void _setValue(long ptr, String hdfname,
                                        String hdf_value);
-  private static native void _removeTree(int ptr, String hdfname);
-  private static native void _setSymLink(int ptr, String hdf_name_src,
+  private static native void _removeTree(long ptr, String hdfname);
+  private static native void _setSymLink(long ptr, String hdf_name_src,
                                        String hdf_name_dest);
-  private static native int _getObj(int ptr, String hdfpath);
-  private static native int _getChild(int ptr, String hdfpath);
-  private static native int _objChild(int ptr);
-  private static native int _objNext(int ptr);
-  private static native String _objName(int ptr);
-  private static native String _objValue(int ptr);
-  private static native void _copy(int destptr, String hdfpath, int srcptr);
+  private static native long _getObj(long ptr, String hdfpath);
+  private static native long _getChild(long ptr, String hdfpath);
+  private static native long _objChild(long ptr);
+  private static native long _objNext(long ptr);
+  private static native String _objName(long ptr);
+  private static native String _objValue(long ptr);
+  private static native void _copy(long destptr, String hdfpath, long srcptr);
 
-  private static native String _dump(int ptr);
+  private static native String _dump(long ptr);
 }
