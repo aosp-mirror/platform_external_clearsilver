@@ -1,5 +1,0 @@
-
-iterate foo elements:
-<?cs each:f = foo ?>
-  <?cs var:name(f) + " = " + f ?>
-<?cs /each ?>
