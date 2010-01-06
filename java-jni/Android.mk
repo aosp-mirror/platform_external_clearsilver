@@ -22,7 +22,7 @@ our_java_lib := $(LOCAL_BUILT_MODULE)
 # ============================================================
 include $(CLEAR_VARS)
 
-LOCAL_MODULE_TAGS := docs
+LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES:= \
 	j_neo_util.c \
