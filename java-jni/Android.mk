@@ -75,3 +75,5 @@ $(intermediates)/j_neo_cs.o : $(GEN)
 # bit java build, just build this in 64 bit.
 $(LOCAL_BUILT_MODULE): HOST_GLOBAL_CFLAGS:=
 $(LOCAL_BUILT_MODULE): HOST_GLOBAL_CPPFLAGS:=
+$(LOCAL_BUILT_MODULE): HOST_GLOBAL_LDFLAGS:=
+
