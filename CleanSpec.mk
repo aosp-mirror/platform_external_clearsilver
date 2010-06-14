@@ -47,3 +47,7 @@
 # ************************************************
 # NEWER CLEAN STEPS MUST BE AT THE END OF THE LIST
 # ************************************************
+$(call add-clean-step, rm -rf $(HOST_OUT)/obj/SHARED_LIBRARIES/libneo_cs_intermediates)
+$(call add-clean-step, rm -rf $(HOST_OUT)/obj/SHARED_LIBRARIES/libneo_cgi_intermediates)
+$(call add-clean-step, rm -rf $(HOST_OUT)/obj/SHARED_LIBRARIES/libneo_util_intermediates)
+$(call add-clean-step, rm -rf $(HOST_OUT)/obj/SHARED_LIBRARIES/libclearsilver-jni_intermediates)

@@ -17,15 +17,14 @@ LOCAL_SRC_FILES:= \
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/..
 LOCAL_CFLAGS := -fPIC
 
+# This forces a 64-bit build for Java6
+ifneq ($(filter 1.6%,$(java_version)),)
+    LOCAL_CFLAGS += -m64
+    LOCAL_LDFLAGS += -m64
+endif
+
 LOCAL_NO_DEFAULT_COMPILER_FLAGS := true
 
 LOCAL_MODULE:= libneo_util
 
 include $(BUILD_HOST_SHARED_LIBRARY)
-
-# this forces us into 64 bit mode, even though for the non-simulator builds we
-# mostly don't do that.  Java on Hardy is 64 bit, and rather than finding a 32
-# bit java build, just build this in 64 bit.
-$(LOCAL_BUILT_MODULE): HOST_GLOBAL_CFLAGS:=
-$(LOCAL_BUILT_MODULE): HOST_GLOBAL_CPPFLAGS:=
-$(LOCAL_BUILT_MODULE): HOST_GLOBAL_LDFLAGS:=
