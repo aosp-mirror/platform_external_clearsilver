@@ -9,10 +9,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/..
 LOCAL_CFLAGS := -fPIC
 
 # This forces a 64-bit build for Java6
-ifneq ($(filter 1.6%,$(java_version)),)
-    LOCAL_CFLAGS += -m64
-    LOCAL_LDFLAGS += -m64
-endif
+LOCAL_CFLAGS += -m64
+LOCAL_LDFLAGS += -m64
 
 LOCAL_NO_DEFAULT_COMPILER_FLAGS := true
 
